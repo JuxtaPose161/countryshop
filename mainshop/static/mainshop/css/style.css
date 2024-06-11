@@ -1,0 +1,17 @@
+.m {
+    background-color: aquamarine;
+    border-color: black;
+    border: 1px solid;
+}
+.head {
+    background-color: gray;
+}
+.m-color {
+    background-color: #c05850;
+}
+.s-color {
+    color: #505668;
+}
+.b-color {
+    color: #f1ece1
+}
