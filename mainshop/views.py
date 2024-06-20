@@ -1,10 +1,6 @@
 from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
 from .models import Country
-import json
-with open('D:\PyCharm\PyProject1\something\db-country.json') as f:
-    data = json.load(f)
-
 def to_need_page(request):
     return redirect('shop', permanent=True)
 def main_page(request):
