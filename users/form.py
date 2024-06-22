@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.auth import get_user_model
+from django.contrib.auth.forms import AuthenticationForm
 
 
 class UserRegisterForm(forms.ModelForm):
@@ -16,3 +17,7 @@ class UserRegisterForm(forms.ModelForm):
         if data['password']!=data['password_r']:
             raise forms.ValidationError('Не совпадают пароли')
         return data['password']
+
+class UserLoginForm(forms.Form):
+    username = forms.CharField(label='Логин')
+    password = forms.CharField(label='Пароль', widget=forms.PasswordInput())

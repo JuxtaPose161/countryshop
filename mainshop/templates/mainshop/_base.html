@@ -29,10 +29,17 @@
                     </div>
                 </div>
                 <div class="col-3">
+                    {% if user.is_authenticated %}
                     <div class="btn-group d-flex py-4 gap-2" role="auth">
-                        <a href="{% url 'auth:register' %}" type="button" class="btn btn-outline-success">Login</a>
+                        <button type="button" class="btn btn-outline-success" disabled>{{ user.username }}</button>
+                        <a href="{% url 'auth:logout' %}" type="button" class="btn btn-outline-success">Logout</a>
+                    </div>
+                    {% else %}
+                    <div class="btn-group d-flex py-4 gap-2" role="auth">
+                        <a href="{% url 'auth:login' %}" type="button" class="btn btn-outline-success">Login</a>
                         <a href="{% url 'auth:register' %}" type="button" class="btn btn-outline-success">Register</a>
                     </div>
+                    {% endif %}
                 </div>
             </div>
         </header>
