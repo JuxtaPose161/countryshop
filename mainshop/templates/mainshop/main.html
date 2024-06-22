@@ -1,4 +1,46 @@
 {% extends 'mainshop/_base.html' %}
+
+{% block aside %}
+<ul class="nav flex-column flex-wrap">
+    <li class="nav-item border border-2 p-2">
+        <div class="nav-item pb-2">Оценка ВВП страны</div>
+        <ul class="list-group">
+            <a class="level level-1" href="{% url 'shop_score' 'A' %}">
+                <li class="list-group-item ">A</li>
+            </a>
+            <a class="level level-2" href="{% url 'shop_score' 'B' %}">
+                <li class="list-group-item ">B</li>
+            </a>
+            <a class="level level-3" href="{% url 'shop_score' 'c' %}">
+                <li class="list-group-item ">C</li>
+            </a>
+            <a class="level level-4" href="{% url 'shop_score' 'D' %}">
+                <li class="list-group-item ">D</li>
+            </a>
+            <a class="level level-5" href="{% url 'shop_score' 'E' %}">
+                <li class="list-group-item ">E</li>
+            </a>
+        </ul>
+    </li>
+    <li class="nav-item border border-2 p-2">
+        <div class="nav-item pb-2">Цвета флага</div>
+        <ul class="list-group">
+            <li class="list-group-item"><a href="{% url 'shop_color' 'maroon' %}">Бордовый</a></li>
+            <li class="list-group-item"><a href="{% url 'shop_color' 'red' %}">Красный</a></li>
+            <li class="list-group-item"><a href="{% url 'shop_color' 'orange' %}">Оранжевый</a></li>
+            <li class="list-group-item"><a href="{% url 'shop_color' 'yellow' %}">Жёлтый</a></li>
+            <li class="list-group-item"><a href="{% url 'shop_color' 'gold' %}">Золотой</a></li>
+            <li class="list-group-item"><a href="{% url 'shop_color' 'green' %}">Зелёный</a></li>
+            <li class="list-group-item"><a href="{% url 'shop_color' 'blue' %}">Синий</a></li>
+            <li class="list-group-item"><a href="{% url 'shop_color' 'light blue' %}">Голубой</a></li>
+            <li class="list-group-item"><a href="{% url 'shop_color' 'black' %}">Чёрный</a></li>
+            <li class="list-group-item"><a href="{% url 'shop_color' 'grey' %}">Серый</a></li>
+            <li class="list-group-item"><a href="{% url 'shop_color' 'white' %}">Белый</a></li>
+        </ul>
+    </li>
+</ul>
+{% endblock %}
+
 {% block content %}
 <div class="d-flex flex-wrap justify-content-evenly">
     {% for entry in obj %}
@@ -19,6 +61,7 @@
     {% endfor %}
 </div>
 {% endblock %}
+
 {% block pagination %}
     <div class = "d-flex flex-wrap justify-content-center mt-3">
     {% if obj.has_other_pages %}

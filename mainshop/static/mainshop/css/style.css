@@ -1,3 +1,7 @@
+a {
+    text-decoration: none
+}
+
 .m {
     background-color: aquamarine;
     border-color: black;
@@ -14,4 +18,32 @@
 }
 .b-color {
     color: #f1ece1
+}
+
+.level {
+    font-style: normal;
+}
+
+.level :hover{
+    color:azure;
+}
+
+.level-1 :hover{
+    background-color: #0b793b;
+}
+
+.level-2 :hover{
+    background-color: #28b446;
+}
+
+.level-3 :hover{
+    background-color: #ffcc34;
+}
+
+.level-4 :hover{
+    background-color: #f0592e;
+}
+
+.level-5 :hover{
+    background-color: #d92223;
 }

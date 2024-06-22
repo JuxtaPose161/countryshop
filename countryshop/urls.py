@@ -19,10 +19,12 @@ from django.urls import path, include
 
 from countryshop import settings
 from mainshop import urls as mainshop_urls
+from users import  urls as users_urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include(mainshop_urls))
+    path('', include(mainshop_urls)),
+    path('auth/', include(users_urls, namespace='auth')),
 ]
 
 if settings.DEBUG == True:

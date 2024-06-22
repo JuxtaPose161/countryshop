@@ -30,8 +30,8 @@
                 </div>
                 <div class="col-3">
                     <div class="btn-group d-flex py-4 gap-2" role="auth">
-                        <button type="button" class="btn btn-outline-success">Login</button>
-                        <button type="button" class="btn btn-outline-success">Register</button>
+                        <a href="{% url 'auth:register' %}" type="button" class="btn btn-outline-success">Login</a>
+                        <a href="{% url 'auth:register' %}" type="button" class="btn btn-outline-success">Register</a>
                     </div>
                 </div>
             </div>
@@ -47,7 +47,7 @@
                 <div class="d-flex m-color b-color py-2 border border-2 border-black">
                     <div class='d-flex align-items-center justify-content-between border-end' style="width: 25%;">
                         <i class="bi-house-door ps-2" style="font-size: 1.5rem; "></i>
-                        <span class="">Главная</span>
+                        <span><a class="b-color" href="{% url 'shop' %}">Главная</a></span>
                         <div class="pe-2 " style="width: 1.5rem;"></div>
                     </div>
                     <div class='d-flex align-items-center justify-content-between border-end' style="width: 25%;">
@@ -72,9 +72,8 @@
         </nav>
         <main class="row">
             <aside class="col-2">
-                <div class="py-2 border" style="background-color: whitesmoke; padding-left:0.75rem;"><a href="">Бедные</a></div>
-                <div class="py-2 border" style="background-color: whitesmoke; padding-left:0.75rem;"><a href="">Средние</a></div>
-                <div class="py-2 border" style="background-color: whitesmoke; padding-left:0.75rem;"><a href="">Богатые</a></div>
+                {% block aside %}
+                {% endblock %}
             </aside>
             <section class="col-10 px-0 pt-2 border border-black">
                 {% block content %}
