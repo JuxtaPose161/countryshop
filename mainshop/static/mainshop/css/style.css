@@ -1,7 +1,17 @@
-a {
-    text-decoration: none
+a{
+    text-decoration: none;
 }
 
+.bi{
+    font-size: 1.5rem;
+}
+
+.nav_a {
+    color: #f1ece1;
+}
+.nav_a :hover {
+    transform: scale(1.2);
+}
 .m {
     background-color: aquamarine;
     border-color: black;
@@ -26,6 +36,7 @@ a {
 
 .level :hover{
     color:azure;
+    transform: scale(1.05);
 }
 
 .level-1 :hover{

@@ -10,79 +10,80 @@
     <link type = 'text/css' rel="stylesheet" href="{% static 'mainshop/css/style.css' %}">
     <link rel="stylesheet" href="{% static 'mainshop/css/bootstrap_icons.css' %}">
 </head>
-<body>
-    <div class="container wrapper">
-        <header class="mt-2">
-            <div class="row ">
-                <div class="col-3 py-3">
-                    <h5>Продам Гараж</h5>
-                    <span>+7 930...</span>
+<body class="min-vh-100">
+    <div class="container wrapper d-flex flex-column min-vh-100">
+        <header class="row">
+            <div class="col-sm-3 pt-3">
+                <h5>Продам Гараж</h5>
+                <span>+7 930...</span>
+            </div>
+            <div class="col-sm-6 order-3 order-sm-2">
+                <div class="input-group rounded justify-content-center h-100">
+                    <form class="d-flex align-self-center pb-4 pb-sm-0">
+                        <input class="form-control me-2" type="search" placeholder="Search" value="{{ search }}" aria-label="Search" name="search">
+                        <button class="btn btn-outline-success" type="submit">
+                            <i class="bi-search"></i>
+                        </button>
+                    </form>
                 </div>
-                <div class="col-6 py-4">
-                    <div class="input-group rounded justify-content-center">
-                        <form class="d-flex">
-                            <input class="form-control me-2" type="search" placeholder="Search" value="{{ search }}" aria-label="Search" name="search">
-                            <button class="btn btn-outline-success" type="submit">
-                                <i class="bi-search"></i>
-                            </button>
-                        </form>
-                    </div>
-                </div>
-                <div class="col-3">
-                    {% if user.is_authenticated %}
-                    <div class="btn-group d-flex py-4 gap-2" role="auth">
-                        <button type="button" class="btn btn-outline-success" disabled>{{ user.username }}</button>
-                        <a href="{% url 'auth:logout' %}" type="button" class="btn btn-outline-success">Logout</a>
-                    </div>
-                    {% else %}
-                    <div class="btn-group d-flex py-4 gap-2" role="auth">
-                        <a href="{% url 'auth:login' %}" type="button" class="btn btn-outline-success">Login</a>
-                        <a href="{% url 'auth:register' %}" type="button" class="btn btn-outline-success">Register</a>
-                    </div>
-                    {% endif %}
+            </div>
+            <div class="col-sm-3 order-2 order-sm-3">
+                <div class="btn-group d-flex py-4 gap-2" role="auth">
+                {% if user.is_authenticated %}
+                    <button type="button" class="btn btn-outline-success" disabled>{{ user.username }}</button>
+                    <a href="{% url 'auth:logout' %}" type="button" class="btn btn-outline-success">Logout</a>
+                {% else %}
+                    <a href="{% url 'auth:login' %}" type="button" class="btn btn-outline-success">Login</a>
+                    <a href="{% url 'auth:register' %}" type="button" class="btn btn-outline-success">Register</a>
+                {% endif %}
                 </div>
             </div>
         </header>
         <nav class="row">
-            <div class="col-2">
-                <div class="d-flex m-color b-color py-2 ps-2 border border-2 border-black">
+            <div class="d-none d-md-block col-3 col-lg-2 px-0 pe-2">
+                <div class="d-flex m-color b-color py-2 ps-2 border border-2 border-black h-100">
                     <i class="bi-list" style="font-size: 1.5rem; padding-left: 0.1rem;"></i>
-                    <span class="ps-1 align-self-center">Категории</span>
+                    <span class="d-none d-md-block ps-1 align-self-center">Категории</span>
+                    <div class="pe-2 " style="width: 1.5rem;"></div>
                 </div>
             </div>
-            <div class="col-8 px-0">
+            <div class="col-10 col-md-7 col-lg-8 px-0">
                 <div class="d-flex m-color b-color py-2 border border-2 border-black">
-                    <div class='d-flex align-items-center justify-content-between border-end' style="width: 25%;">
-                        <i class="bi-house-door ps-2" style="font-size: 1.5rem; "></i>
-                        <span><a class="b-color" href="{% url 'shop' %}">Главная</a></span>
-                        <div class="pe-2 " style="width: 1.5rem;"></div>
+                    <div class='d-flex nav_a d-md-none align-items-center justify-content-between border-end' style="width: 25%;">
+                        <a class="b-color" href=""><i class="bi bi-list ps-2"></i></a>
+                        <div class="pe-2" style="width: 1.5rem;"></div>
                     </div>
-                    <div class='d-flex align-items-center justify-content-between border-end' style="width: 25%;">
-                        <i class="bi-bookmark-star ps-2" style="font-size: 1.5rem; "></i>
-                        <span class="">Избранное</span>
-                        <div class="pe-2 " style="width: 1.5rem;"></div>
+                    <div class='d-flex nav_a align-items-center justify-content-between border-end' style="width: 25%;">
+                        <a class="b-color" href="{% url 'shop' %}"><i class="bi bi-house-door ps-2" style="font-size: 1.5rem; "></i></a>
+                        <a class="b-color d-none d-md-block text-break" href="{% url 'shop' %}">Главная</a>
+                        <div class="pe-2 " style="width: 1.5rem"></div>
                     </div>
-                    <div class='d-flex align-items-center justify-content-between border-end' style="width: 25%;">
-                        <i class="bi-rocket-takeoff ps-2" style="font-size: 1.5rem; "></i>
-                        <span class="">В тренде</span>
-                        <div class="pe-2 " style="width: 1.5rem;"></div>
+                    <div class='d-flex nav_a align-items-center justify-content-between border-end' style="width: 25%;">
+                        <a class="b-color" href=""><i class="bi bi-bookmark-star ps-2" style="font-size: 1.5rem; "></i></a>
+                        <a class="b-color d-none d-md-block text-break" href="">Избранное</a>
+                        <div class="pe-2 " style="width: 1.5rem"></div>
+                    </div>
+                    <div class='d-flex nav_a align-items-center justify-content-between border-end' style="width: 25%;">
+                        <a class="b-color" href=""><i class="bi bi-rocket-takeoff ps-2" style="font-size: 1.5rem; "></i></a>
+                        <a class="b-color d-none d-md-block text-break">Интересное</a>
+                        <div class="pe-2 " style="width: 1.5rem"></div>
                     </div>
                 </div>
             </div>
             <div class="col-2 px-0">
-                <div class="d-flex align-items-center justify-content-between m-color border border-2 border-black py-2  b-color">
-                    <i class="bi-cart-fill ps-2" style="font-size: 1.5rem;"></i>
-                    <span class="">Корзина</span>
+                <div class="d-flex align-items-center justify-content-between m-color border border-2 border-black py-2 b-color h-100">
+                    <i class="bi-cart-fill ps-2" style="font-size: 1.5rem"></i>
+                    <span class="d-none d-md-block">Корзина</span>
                     <div class="pe-2 " style="width: 1.5rem;"></div>
                 </div>
             </div>
         </nav>
-        <main class="row">
-            <aside class="col-2">
+        <main class="row d-flex flex-grow-1">
+            <aside class="d-none d-md-block col-md-3 col-lg-2 px-0 pe-2">
                 {% block aside %}
                 {% endblock %}
             </aside>
-            <section class="col-10 px-0 pt-2 border border-black">
+            <section class="col-md-9 col-lg-10 px-0 border border-black">
                 {% block content %}
                     <p>something here</p>
                 {% endblock %}
@@ -92,12 +93,21 @@
             </section>
         </main>
 
-        <footer class="row m-color">
-            <div class="col-3 py-3" style="background-color: antiquewhite;">
-
+        <footer class="footer mt-auto ">
+            <div class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+                <div class="col-md-4 d-flex align-items-center">
+                <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
+                    <i class="bi bi-github"></i>
+                </a>
+                <span class="text-muted">© 2024 JuxtaPose, Github</span>
+                </div>
+                <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+                    <li class="ms-3"><a class="text-muted" href="#"><i class="bi bi-telegram" style="color: #3894e8"></i></a></li>
+                    <li class="ms-3"><a class="text-muted" href="#"><i class="bi bi-instagram"></i></a></li>
+                    <li class="ms-3"><a class="text-muted" href="#"><i class="bi bi-h-circle-fill" style="color: red"></i></a></li>
+                </ul>
             </div>
         </footer>
     </div>
-</div>
 </body>
 </html>
