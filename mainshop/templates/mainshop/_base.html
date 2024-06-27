@@ -28,7 +28,7 @@
                 </div>
             </div>
             <div class="col-sm-3 order-2 order-sm-3">
-                <div class="btn-group d-flex py-4 gap-2" role="auth">
+                <div class="btn-group d-flex flex-sm-column flex-md-row py-4 gap-2" role="auth">
                 {% if user.is_authenticated %}
                     <button type="button" class="btn btn-outline-success" disabled>{{ user.username }}</button>
                     <a href="{% url 'auth:logout' %}" type="button" class="btn btn-outline-success">Logout</a>
@@ -85,7 +85,6 @@
             </aside>
             <section class="col-md-9 col-lg-10 px-0 border border-black">
                 {% block content %}
-                    <p>something here</p>
                 {% endblock %}
 
                 {% block pagination %}

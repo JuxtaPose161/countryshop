@@ -1,9 +1,18 @@
 {% extends 'mainshop/_base.html' %}
 {% block content %}
-    <h1>Авторизация</h1>
-    <form method="post" action="">
-    {% csrf_token %}
-        {{ form.as_p }}
-        <p><button type="submit">Войти</button></p>
-    </form>
+<div class="d-flex flex-wrap justify-content-center align-items-center h-100">
+    <div>
+        <h1>Авторизация</h1>
+        <div style="height: 8px;"></div>
+        <form method="post" action>
+            {% csrf_token %}
+            {% for field in form.visible_fields %}
+            <div class="mb-3">
+                <input type="{{ field.widget_type }}" class="form-control" name="{{ field.name }}" id="{{ field.id_for_label }}" placeholder="{{ field.label }}">
+            </div>
+            {% endfor %}
+            <button type="submit" class="btn btn-primary">Отправить</button>
+        </form>
+    </div>
+</div>
 {% endblock %}
