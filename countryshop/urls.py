@@ -19,12 +19,14 @@ from django.urls import path, include
 
 from countryshop import settings
 from mainshop import urls as mainshop_urls
-from users import  urls as users_urls
+from users import urls as users_urls
+from drf_part import urls as drf_urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(mainshop_urls)),
     path('auth/', include(users_urls, namespace='auth')),
+    path('api/', include(drf_urls, namespace='api')),
 ]
 
 if settings.DEBUG == True:
