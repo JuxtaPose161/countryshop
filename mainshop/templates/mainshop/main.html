@@ -1,8 +1,9 @@
 {% extends 'mainshop/_base.html' %}
 
+
 {% block aside %}
-<ul class="nav flex-column flex-wrap">
-    <li class="nav-item border border-2 p-2">
+{% block asideinnav %}
+    <li class="nav-item p-2">
         <div class="nav-item pb-2">Оценка ВВП страны</div>
         <ul class="list-group">
             <a class="level level-1" href="{% url 'shop_score' 'A' %}">
@@ -22,7 +23,7 @@
             </a>
         </ul>
     </li>
-    <li class="nav-item border border-2 p-2">
+    <li class="nav-item border-top p-2">
         <div class="nav-item pb-2">Цвета флага</div>
         <ul class="list-group">
             <li class="list-group-item"><a href="{% url 'shop_color' 'maroon' %}">Бордовый</a></li>
@@ -38,23 +39,38 @@
             <li class="list-group-item"><a href="{% url 'shop_color' 'white' %}">Белый</a></li>
         </ul>
     </li>
-</ul>
+{% endblock %}
 {% endblock %}
 
 {% block content %}
+{% if obj.has_other_pages %}
 <div class="d-flex flex-wrap justify-content-evenly">
+{% else %}
+<div class="d-flex flex-wrap justify-content-evenly pb-3 align-items-center h-100">
+{% endif %}
     {% for entry in obj %}
     <div class="card p-2 mt-3" style="width: 21rem;">
-        <div class="d-flex" style="height: 45%">
+        <div class="d-flex" style="height: 212px">
             <img src="{{ entry.flag_path.url }}" alt="flag" width="100%">
         </div>
         <div class="card-body">
             <h4 class="card-title text-center">{{ entry.name }}</h4>
-            <p class="card-text">Афганистан — страна с богатой историей и культурой, расположенная на стыке Южной и Центральной Азии. Здесь находится...</p>
-            <a href="#" class="card-link">Читать продолжение в источнике</a>
-            <div class="d-flex justify-content-between pt-3">
-                <a href="#"><i class="bi-heart"></i></a>
-                <a href="#"><i class="bi-star"></i></a>
+            <p class="card-text">{{ entry.about.first.article|truncatewords:10}}</p>
+            <a href="{% url 'shop_article' entry.slug %}" class="card-link">Статья о стране</a>
+            <div class="d-flex justify-content-around align-items-center mt-3">
+                <i class="bi bi-heart" style="color: red"></i>
+                <div>{{ entry.price }} &#8381;</div>
+            {% if user.is_authenticated %}
+                <a href="{% url 'pic' entry.slug %}">
+                    {% if entry in user.cart.purchases.all %}
+                        <i class="bi bi-bag-plus-fill"></i>
+                    {% else %}
+                        <i class="bi bi-bag-plus"></i>
+                    {% endif %}
+            {% else %}
+                <a href="" data-bs-toggle="tooltip" data-bs-placement="top" title="Войдите в аккаунт чтобы использовать корзину"><i class="bi bi-bag-plus"></i></a>
+            {% endif %}
+                </a>
             </div>
         </div>
     </div>

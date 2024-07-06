@@ -49,39 +49,49 @@
             </div>
             <div class="col-10 col-md-7 col-lg-8 px-0">
                 <div class="d-flex m-color b-color py-2 border border-2 border-black">
-                    <div class='d-flex nav_a d-md-none align-items-center justify-content-between border-end' style="width: 25%;">
-                        <a class="b-color" href=""><i class="bi bi-list ps-2"></i></a>
+                    <div class='dropdown d-flex d-md-none align-items-center justify-content-between border-end' style="width: 25%;">
+                        <a class="b-color dropdown-toggle" role="button" id="droplink" data-bs-toggle="dropdown" aria-expanded="false" href=""><i class="bi bi-list ps-2"></i></a>
+                            <ul class="dropdown-menu">
+                                {% block asideinnav %}
+                                {% endblock %}
+                            </ul>
                         <div class="pe-2" style="width: 1.5rem;"></div>
                     </div>
                     <div class='d-flex nav_a align-items-center justify-content-between border-end' style="width: 25%;">
-                        <a class="b-color" href="{% url 'shop' %}"><i class="bi bi-house-door ps-2" style="font-size: 1.5rem; "></i></a>
-                        <a class="b-color d-none d-md-block text-break" href="{% url 'shop' %}">Главная</a>
+                        <a class="b-color" href="{% url 'shop' %}"><i class="bi bi-house-door ps-2"></i></a>
+                        <a class="b-color d-none d-md-block text-break" href="{% url 'shop' %}">Магазин</a>
                         <div class="pe-2 " style="width: 1.5rem"></div>
                     </div>
                     <div class='d-flex nav_a align-items-center justify-content-between border-end' style="width: 25%;">
-                        <a class="b-color" href=""><i class="bi bi-bookmark-star ps-2" style="font-size: 1.5rem; "></i></a>
-                        <a class="b-color d-none d-md-block text-break" href="">Избранное</a>
-                        <div class="pe-2 " style="width: 1.5rem"></div>
-                    </div>
-                    <div class='d-flex nav_a align-items-center justify-content-between border-end' style="width: 25%;">
-                        <a class="b-color" href=""><i class="bi bi-rocket-takeoff ps-2" style="font-size: 1.5rem; "></i></a>
-                        <a class="b-color d-none d-md-block text-break">Интересное</a>
+                        <a class="b-color" href=""><i class="bi bi-calendar-heart ps-2"></i></a>
+                        <a class="b-color d-none d-md-block text-break" href="/api">API</a>
                         <div class="pe-2 " style="width: 1.5rem"></div>
                     </div>
                 </div>
             </div>
             <div class="col-2 px-0">
-                <div class="d-flex align-items-center justify-content-between m-color border border-2 border-black py-2 b-color h-100">
-                    <i class="bi-cart-fill ps-2" style="font-size: 1.5rem"></i>
-                    <span class="d-none d-md-block">Корзина</span>
+                {% if user.is_authenticated %}
+                <div class="d-flex nav_a align-items-center justify-content-between m-color border border-2 border-black py-2 h-100">
+                    <a class="b-color" href="{% url 'cart' %}"><i class="bi bi-cart-fill ps-2"></i></a>
+                    <a class="b-color d-none d-md-block" href="{% url 'cart' %}">Корзина</a>
                     <div class="pe-2 " style="width: 1.5rem;"></div>
                 </div>
+                {% else %}
+                <div class="d-flex align-items-center justify-content-between m-color border border-2 border-black py-2 h-100">
+                    <div class="" style="color: lightgrey"><i class="bi bi-cart-fill ps-2"></i></div>
+                    <div class="d-none d-md-block" style="color: lightgrey">Корзина</div>
+                    <div class="pe-2 " style="width: 1.5rem;"></div>
+                </div>
+                {% endif %}
+
             </div>
         </nav>
         <main class="row d-flex flex-grow-1">
             <aside class="d-none d-md-block col-md-3 col-lg-2 px-0 pe-2">
+                <ul class="nav flex-column flex-wrap border">
                 {% block aside %}
                 {% endblock %}
+                </ul>
             </aside>
             <section class="col-md-9 col-lg-10 px-0 border border-black">
                 {% block content %}
@@ -95,18 +105,24 @@
         <footer class="footer mt-auto ">
             <div class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
                 <div class="col-md-4 d-flex align-items-center">
-                <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
+                <a href="https://github.com/JuxtaPose161" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
                     <i class="bi bi-github"></i>
                 </a>
                 <span class="text-muted">© 2024 JuxtaPose, Github</span>
                 </div>
                 <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
-                    <li class="ms-3"><a class="text-muted" href="#"><i class="bi bi-telegram" style="color: #3894e8"></i></a></li>
-                    <li class="ms-3"><a class="text-muted" href="#"><i class="bi bi-instagram"></i></a></li>
-                    <li class="ms-3"><a class="text-muted" href="#"><i class="bi bi-h-circle-fill" style="color: red"></i></a></li>
+                    <li class="ms-3"><a class="text-muted" href="https://t.me/ProstoTemik"><i class="bi bi-telegram" style="color: #3894e8"></i></a></li>
+                    <li class="ms-3"><a class="text-muted" href="https://hh.ru/resume/21de25b7ff0d60f5810039ed1f32686c564b45"><i class="bi bi-h-circle-fill" style="color: red"></i></a></li>
                 </ul>
             </div>
         </footer>
     </div>
 </body>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+<script>
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+    return new bootstrap.Tooltip(tooltipTriggerEl)})
+</script>
 </html>

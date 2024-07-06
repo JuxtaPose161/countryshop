@@ -1,0 +1,12 @@
+{% extends 'mainshop/_base.html' %}
+{% block content %}
+<div class="d-flex flex-wrap justify-content-center align-items-center h-100">
+    <div>
+        <form method ='post' action>
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Отправить</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

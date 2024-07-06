@@ -1,0 +1,50 @@
+{% extends 'mainshop/_base.html' %}
+{% load humanize %}
+
+{% block content %}
+    <div class="d-flex flex-wrap flex-xl-nowrap h-xl-100 p-2">
+        <div class="d-flex flex-column h-100 align-items-center w-100 mt-2">
+            <img src="{{ obj.flag_path.url }}" class="d-none d-lg-block m-2" alt="flag" width="480px">
+            <img src="{{ obj.flag_path.url }}" class="d-lg-none m-2" alt="flag" width="320px">
+            <h1 class="display-5">{{ obj.name }}</h1>
+            <div class="align-self-start ps-3">
+                <p style="font-size: large">ВВП: {{ obj.gnp|intword }} $</p>
+                <p style="font-size: large">ВВП на человека: {{ obj.gnp_per_capita|intword }} $</p>
+            </div>
+            <p style="font-size: x-large;">{{ obj.price }} &#8381;</p>
+            <div class="d-flex justify-content-around w-100 px-3">
+                <a href="" data-bs-toggle="tooltip" data-bs-placement="top" title="Я его пока не сделал("><i class="bi bi-heart" style="color:red"></i><span class="ps-3">Авторский лайк</span></a>
+                <a
+                    {% if user.is_authenticated %} href="{% url 'pic' obj.slug %}" {% else %} href="" data-bs-toggle="tooltip" data-bs-placement="top" title="Войдите в аккаунт чтобы использовать корзину" {% endif %}>
+                    <span class="pe-3">В корзину</span>
+                    {% if obj in user.cart.purchases.all %}
+                        <i class="bi bi-bag-plus-fill"></i>
+                    {% else %}
+                        <i class="bi bi-bag-plus"></i>
+                    {% endif %}
+                </a>
+            </div>
+        </div>
+        <div class="">
+            <p class="p-3" style="font-size: large;">&emsp; {{ article.article }}</p>
+            {% if article.owner %}
+            <p class="ps-4 ">Статья by: <i>{{ article.owner }}</i></p>
+            {% endif %}
+            <p class="ps-4 ">Посмотреть статью от:
+                <i><a href="{% url 'shop_article' obj.slug %}"
+                        {% if not user.is_authenticated %} data-bs-toggle="tooltip" data-bs-placement="top" title="Войдите в аккаунт чтобы написать статью" {% endif %}>
+                    Админа </a></i>
+                {% for i in obj.about.all %}
+                    {% if i.owner %}
+                    <i><a href="?author={{ i.owner }}">{{ i.owner }} </a></i>
+                    {% endif %}
+                {% endfor %}</p>
+            {% if user.is_authenticated and not is_write_article %}
+                <a href="{% url 'create_article' obj.slug %}" class="ps-4"><i>Написать статью</i></a>
+            {% elif user.is_authenticated and is_write_article %}
+                <a href="{% url 'update_article' obj.slug %}" class="ps-4"><i>Отредактировать статью</i></a>
+                <a href="{% url 'delete_article' obj.slug%}" class="ps-4"><i>Удалить статью</i></a>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

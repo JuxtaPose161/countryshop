@@ -1,30 +1,26 @@
 a{
     text-decoration: none;
 }
-
 .bi{
     font-size: 1.5rem;
 }
-
-.nav_a {
+a.nav_a {
     color: #f1ece1;
 }
 .nav_a :hover {
     transform: scale(1.2);
 }
-.m {
-    background-color: aquamarine;
-    border-color: black;
-    border: 1px solid;
+.dropdown-toggle:hover{
+    transform: scale(1.2);
+}
+.dropdown-toggle::after{
+    content: none;
 }
 .head {
     background-color: gray;
 }
 .m-color {
     background-color: #c05850;
-}
-.s-color {
-    color: #505668;
 }
 .b-color {
     color: #f1ece1

@@ -17,6 +17,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 
+import mainshop.views
 from countryshop import settings
 from mainshop import urls as mainshop_urls
 from users import urls as users_urls
@@ -24,7 +25,8 @@ from drf_part import urls as drf_urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include(mainshop_urls)),
+    path('', mainshop.views.to_need_page),
+    path('shop/', include(mainshop_urls)),
     path('auth/', include(users_urls, namespace='auth')),
     path('api/', include(drf_urls, namespace='api')),
 ]
