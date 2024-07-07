@@ -1,0 +1,56 @@
+a{
+    text-decoration: none;
+}
+.bi{
+    font-size: 1.5rem;
+}
+a.nav_a {
+    color: #f1ece1;
+}
+.nav_a :hover {
+    transform: scale(1.2);
+}
+.dropdown-toggle:hover{
+    transform: scale(1.2);
+}
+.dropdown-toggle::after{
+    content: none;
+}
+.head {
+    background-color: gray;
+}
+.m-color {
+    background-color: #c05850;
+}
+.b-color {
+    color: #f1ece1
+}
+
+.level {
+    font-style: normal;
+}
+
+.level :hover{
+    color:azure;
+    transform: scale(1.05);
+}
+
+.level-1 :hover{
+    background-color: #0b793b;
+}
+
+.level-2 :hover{
+    background-color: #28b446;
+}
+
+.level-3 :hover{
+    background-color: #ffcc34;
+}
+
+.level-4 :hover{
+    background-color: #f0592e;
+}
+
+.level-5 :hover{
+    background-color: #d92223;
+}
