@@ -3,10 +3,10 @@ from django.utils import timezone
 from django.utils.text import slugify
 from django.contrib.auth.models import User
 class Country(models.Model):
-    name = models.CharField(max_length=30, unique=True)
+    name = models.CharField(max_length=35, unique=True)
     slug = models.SlugField(max_length=255, unique=True, db_index=True, default='')
-    gnp = models.IntegerField(default=0)
-    gnp_per_capita = models.IntegerField(default=0)
+    gnp = models.BigIntegerField(default=0)
+    gnp_per_capita = models.BigIntegerField(default=0)
 
     code = models.CharField(max_length=2, null=True)
     flag_colors = models.ManyToManyField('FlagColors', related_name='colors')
