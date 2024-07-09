@@ -1,0 +1,50 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:latest
+    container_name: postgres
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: app
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -d app -U root"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    ports:
+      - "5432:5432"
+  django:
+    build:
+      context: .
+    ports:
+     - "8000:8000"
+    depends_on:
+     postgres:
+        condition: service_healthy
+    environment:
+      SECRET_KEY: '2eilu8=j4b9w0o*q+1!g^=hgwrx$uucqyy!q%1=fmogbufa_wt'
+      DEBUG: "False"
+      DB_USER: "root"
+      DB_PASSWORD: "root"
+      DB_NAME : "app"
+      DB_HOST: "postgres"
+      DB_PORT: 5432
+    volumes:
+      - static_volume:/app/static
+      - media_volume:/app/media
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - static_volume:/static
+      - media_volume:/media
+    ports:
+      - "80:80"
+    depends_on:
+      - django
+
+volumes:
+  static_volume:
+  media_volume:
