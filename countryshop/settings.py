@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG')
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '0.0.0.0', '194.87.98.45']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '0.0.0.0', '194.87.98.45', 'juxta-pet-project.online', 'www.juxta-pet-project.online']
 # ALLOWED_HOSTS = ['countryshop.containers.cloud.ru', 'www.countryshop.containers.cloud.ru']
 
 
